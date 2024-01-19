@@ -2,12 +2,18 @@
 // Before a module's code executes node will wrap it with a function wrapper that provides module scope
 // This saves us from having to worry about conflicting variables or functions
 // There is proper encapsulation and reusability is unaffected.
-(function(){
+(function(message){
     const superHero = "Batman"
-    console.log(superHero);
-})();
+    console.log(message, superHero);
+})("Hello");
 
-(function(){
+(function(message){
     const superHero = "Superman"
-    console.log(superHero);
-})();
+    console.log(message, superHero);
+})("Hi");
+
+// Before a module's code is executed node will wrap it in a function that contains 5 parameters i.e
+// (function(exports, require, module, __filename, __dirname){
+//     const superHero = "Batman"
+//     console.log(message, superHero);
+// })("Hello");
