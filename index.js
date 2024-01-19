@@ -1,10 +1,14 @@
-const superHero = require('./super-hero')
-console.log(superHero.getName())
-// => Batman
-superHero.setName("Superman")
-console.log(superHero.getName())
-// => Superman
+// const add = require('./add')
 
-const newSuperHero = require('./super-hero')
-console.log(newSuperHero.getName())
-// => Superman
+// console.log(add(55, 10))
+
+// const math = require('./math')
+
+// console.log(math.add(55, 10))
+// console.log(math.subtract(55, 10))
+
+// Destructuring
+const {add, subtract} = require('./math')
+
+console.log(add(55, 10))
+console.log(subtract(55, 10))
