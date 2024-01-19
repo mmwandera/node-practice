@@ -1,5 +1,10 @@
-require('./batman.js')
-require('./superman.js')
+const superHero = require('./super-hero')
+console.log(superHero.getName())
+// => Batman
+superHero.setName("Superman")
+console.log(superHero.getName())
+// => Superman
 
-// No conflict or error even though we are console.logging superHero on both
-// Each module in js has its own scope
+const newSuperHero = require('./super-hero')
+console.log(newSuperHero.getName())
+// => Superman
