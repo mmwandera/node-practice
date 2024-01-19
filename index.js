@@ -1,9 +1,5 @@
-const add = require('./add.js')
+require('./batman.js')
+require('./superman.js')
 
-console.log("mans just here init");
-const sum = add(1, 2)
-const sum2 = add(4, 3)
-
-console.log(sum)
-console.log(sum2)
-
+// No conflict or error even though we are console.logging superHero on both
+// Each module in js has its own scope
