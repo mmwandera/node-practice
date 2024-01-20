@@ -1,14 +1,8 @@
-// const add = require('./add')
+const data = require('./data.json');
 
-// console.log(add(55, 10))
+console.log(data)
+console.log(data.name)
+console.log(data.address.street)
+console.log(data.address.city)
 
-// const math = require('./math')
-
-// console.log(math.add(55, 10))
-// console.log(math.subtract(55, 10))
-
-// Destructuring
-const {add, subtract} = require('./math')
-
-console.log(add(55, 10))
-console.log(subtract(55, 10))
+// node --watch index.js
