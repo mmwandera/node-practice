@@ -1,7 +1,46 @@
-const buffer = new Buffer.from("mans just here init")
+const fs = require("node:fs")
 
-buffer.write("as i said, mans just here init")
+// WRITING FILES
+console.log("First")
 
-console.log(buffer)
-console.log(buffer.toJSON()) // 
-console.log(buffer.toString())
+// Reading files synchronously
+const fileContents = fs.readFileSync("file.txt", "utf8")
+console.log(fileContents)
+
+
+console.log("Second")
+
+// Reading files asynchronously
+fs.readFile("file.txt", "utf8", (err, data) => {
+    if(err){
+        console.log(err)
+    }else{
+        console.log(data)
+    }
+})
+
+console.log("Third")
+
+// WRITING FILES
+
+// Writing files synchronously
+fs.writeFileSync("./greet.txt", "whagwan bruv")
+
+// Writing files asynchronously
+// By default writeFile will overwrite existing files
+// fs.writeFile("./greet.txt", "in a bit bruv", (err) => {
+//     if(err){
+//         console.log(err)
+//     }else{
+//         console.log("File written successfully")
+//     }
+// })
+
+// To append to a file
+fs.writeFile("./greet.txt", ". you good fam?", {flag: "a"}, (err) => {
+    if(err){
+        console.log(err)
+    }else{
+        console.log("File written successfully")
+    }
+})
