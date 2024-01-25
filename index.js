@@ -27,7 +27,8 @@ console.log("Third")
 fs.writeFileSync("./greet.txt", "whagwan bruv")
 
 // Writing files asynchronously
-// By default writeFile will overwrite existing files
+// If the file does not exist it will be created
+// By default writeFile will overwrite existing files if file exists
 // fs.writeFile("./greet.txt", "in a bit bruv", (err) => {
 //     if(err){
 //         console.log(err)
