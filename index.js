@@ -1,76 +1,19 @@
-const fs = require("node:fs/promises")
+const fs = require('node:fs')
 
-console.log("First")
+const readableStream = fs.createReadStream('./file.txt', {
+    encoding: 'utf8',
+    highWaterMark: 2,
+})
 
-fs.readFile("file.txt", "utf8")
-    .then((data) => {
-        console.log(data)
-    })
-    .catch((err) => {
-        console.log(err)
-    })
+const writeableStream = fs.createWriteStream('./file2.txt')
 
-console.log("Second")
+readableStream.on('data', (chunk) => {
+    console.log(chunk)
+    writeableStream.write(chunk)
+})
 
-// async function readFile(){
-//     try{
-//         const data = await fs.readFile("file.txt", "utf8")
-//         console.log(data)
-//     }catch(err){
-//         console.log(err)
-//     }
-// }
-
-// readFile()
-
-/////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////
-
-
-// const fs = require("node:fs")
-
-// // WRITING FILES
-// console.log("First")
-
-// // Reading files synchronously
-// const fileContents = fs.readFileSync("file.txt", "utf8")
-// console.log(fileContents)
-
-
-// console.log("Second")
-
-// // Reading files asynchronously
-// fs.readFile("file.txt", "utf8", (err, data) => {
-//     if(err){
-//         console.log(err)
-//     }else{
-//         console.log(data)
-//     }
-// })
-
-// console.log("Third")
-
-// // WRITING FILES
-
-// // Writing files synchronously
-// fs.writeFileSync("./greet.txt", "whagwan bruv")
-
-// // Writing files asynchronously
-// // If the file does not exist it will be created
-// // By default writeFile will overwrite existing files if file exists
-// // fs.writeFile("./greet.txt", "in a bit bruv", (err) => {
-// //     if(err){
-// //         console.log(err)
-// //     }else{
-// //         console.log("File written successfully")
-// //     }
-// // })
-
-// // To append to a file
-// fs.writeFile("./greet.txt", ". you good fam?", {flag: "a"}, (err) => {
-//     if(err){
-//         console.log(err)
-//     }else{
-//         console.log("File written successfully")
-//     }
-// })
+// TYPES OF STREAMS
+// 1. Readable Streams from which data can be read
+// 2. Writable Streams to which data can be written
+// 3. Duplex Streams from which data can be read and written
+// 4. Transform Streams from which data can be read and transformed to another format
