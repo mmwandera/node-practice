@@ -1,16 +1,18 @@
-// CALLBACKS
-// In js, functions are first class objects
-// Functions can be passed as arguments to other functions
-// A function can also be returned from another function
+const EventEmitter = require('node:events');
 
-// A function passed as an argument to another function is called a callback function
-function greet(name) {
-    console.log(`Hello ${name}`);
-}
+// Instantiating emitter object from EventEmitter class
+const emitter = new EventEmitter();
 
-function greetMark(greetFn) {
-    const name = 'Mark';
-    greetFn('Mark');
-}
+// Responding to "order-pizza" event
+emitter.on("order-pizza", (size, toppings) => {
+    console.log(`Order for ${size} pizza with ${toppings} toppings.`)
+})
 
-greetMark(greet); // "Hello Mark"
+emitter.on("order-pizza", (size) => {
+    if (size === "large") {
+        console.log("Serving complimentary drink")
+    }
+})
+
+// Using the emitter object, we can emit events
+emitter.emit("order-pizza", "large", "mushroom")
