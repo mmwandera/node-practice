@@ -1,18 +1,32 @@
-const EventEmitter = require('node:events');
+const PizzaShop = require('./pizza-shop.js');
+const DrinkMachine = require('./drink-machine.js')
 
-// Instantiating emitter object from EventEmitter class
-const emitter = new EventEmitter();
+const pizzaShop = new PizzaShop();
+const drinkMachine = new DrinkMachine();
 
-// Responding to "order-pizza" event
-emitter.on("order-pizza", (size, toppings) => {
+pizzaShop.on("order", (size, toppings) => {
     console.log(`Order for ${size} pizza with ${toppings} toppings.`)
+    drinkMachine.serveDrink("large")
 })
 
-emitter.on("order-pizza", (size) => {
-    if (size === "large") {
-        console.log("Serving complimentary drink")
-    }
-})
+pizzaShop.order("large", "mushroom");
+pizzaShop.displayOrderNumber();
 
-// Using the emitter object, we can emit events
-emitter.emit("order-pizza", "large", "mushroom")
+// const EventEmitter = require('node:events');
+
+// // Instantiating emitter object from EventEmitter class
+// const emitter = new EventEmitter();
+
+// // Responding to "order-pizza" event
+// emitter.on("order-pizza", (size, toppings) => {
+//     console.log(`Order for ${size} pizza with ${toppings} toppings.`)
+// })
+
+// emitter.on("order-pizza", (size) => {
+//     if (size === "large") {
+//         console.log("Serving complimentary drink")
+//     }
+// })
+
+// // Using the emitter object, we can emit events
+// emitter.emit("order-pizza", "large", "mushroom")
