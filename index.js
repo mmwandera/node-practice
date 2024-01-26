@@ -1,15 +1,11 @@
+const fs = require('fs')
+
+fs.readFile(__filename, () => {
+    console.log('I am read file')
+})
+
 setTimeout(() => {
     console.log("I am timeout")
-}, 3000)
+}, 0)
 
-Promise.resolve().then(() => {
-    console.log('I am promise')
-})
-process.nextTick(() => {
-    console.log('I am next tick')
-})
-
-// Callbacks in the microtask queues are executed before callbacks in the timer queue
-// I am next tick
-// I am promise
-// I am timeout
+// When running setTimeout with a delay of 0ms and an I/O sync method, the order of execution can never be guaranteed
