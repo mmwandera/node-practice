@@ -1,17 +1,11 @@
-const fs = require('node:fs')
-const zlib = require('node:zlib')
+const http = require("http")
 
-const gzip = zlib.createGzip()
-
-const readableStream = fs.createReadStream('./file.txt', {
-    encoding: 'utf8',
-    highWaterMark: 2,
+const server = http.createServer((req, res) => {
+    res.writeHead(200, {"Content-Type": "text/plain"});
+    res.end("Hello World");
+    console.log(req)
 })
 
-// Readable stream - Transform stream - Writable stream
-readableStream.pipe(gzip).pipe(fs.WriteStream('./file2.txt.gz'))
-
-const writeableStream = fs.createWriteStream('./file2.txt')
-
-readableStream.pipe(writeableStream)
-
+server.listen(3000, () => {
+    console.log("Server running on port 3000")
+})
