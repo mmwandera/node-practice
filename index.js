@@ -1,25 +1,35 @@
 const fs = require('fs')
 
-fs.readFile(__filename, () => {
-    console.log('I am read file')
-    setImmediate(() => {
-        console.log("I am immediate")
-    })
+const readableStream = fs.createReadStream(__filename);
+readableStream.close()
+
+readableStream.on('close', () => {
+    console.log("This is from readableStream close event callback")
 })
 
-process.nextTick(() => {
-    console.log("I am next tick")
-})
-
-Promise.resolve().then(() => {
-    console.log("I am promise")
+setImmediate(() => {
+    console.log("I am immediate")
 })
 
 setTimeout(() => {
     console.log("I am timeout")
 }, 0)
 
+Promise.resolve().then(() => {
+    console.log("I am promise")
+})
 
-for (let i =0; i<2000000000; i++) {}
+process.nextTick(() => {
+    console.log("I am next tick")
+})
 
-// Check queue callbacks are executed after microtask queue callbacks, timers and I/O callbacks
+// I am next tick
+// I am promise
+// I am timeout
+// I am immediate
+// This is from readableStream close event callback
+
+
+
+
+
