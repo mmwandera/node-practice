@@ -1,5 +1,16 @@
 {
+  "name": "practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "add.js",
   "dependencies": {
     "upper-case": "^3.0.0"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon index.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

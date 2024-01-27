@@ -4,4 +4,4 @@ function greet(name){
     console.log(upperCase(`whagwan ${name}. you good fam?`))
 }
 
-greet('bruv')
+greet('rowmando')
