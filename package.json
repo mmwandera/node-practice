@@ -1,16 +1,18 @@
 {
-  "name": "practice",
+  "name": "mans-just-here-init",
   "version": "1.0.0",
   "description": "",
-  "main": "add.js",
-  "dependencies": {
-    "upper-case": "^3.0.0"
-  },
-  "devDependencies": {},
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon index.mjs"
+    "start": "mans-just-here-init"
+  },
+  "bin": {
+    "mans-just-here-init": "index.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mans-just-here-init": "^1.0.0"
+  }
 }
