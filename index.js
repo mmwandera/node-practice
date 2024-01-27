@@ -2,6 +2,9 @@ const fs = require('fs')
 
 fs.readFile(__filename, () => {
     console.log('I am read file')
+    setImmediate(() => {
+        console.log("I am immediate")
+    })
 })
 
 process.nextTick(() => {
@@ -16,10 +19,7 @@ setTimeout(() => {
     console.log("I am timeout")
 }, 0)
 
-setImmediate(() => {
-    console.log("I am immediate")
-})
 
 for (let i =0; i<2000000000; i++) {}
 
-// "I am immediate" is logged before "I am timeout" which is strange cause I/O queue is before check queue
+// Check queue callbacks are executed after microtask queue callbacks, timers and I/O callbacks
